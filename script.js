@@ -1,20 +1,21 @@
-function add(a,b){
-    return a+b;
+let firstNum
+let op
+let secondNum
+
+function operate(firstNum, op, secondNum){
+    if(op=="+"){
+        return firstNum+secondNum;
+    }
+    else if(op=="-"){
+        return firstNum-secondNum;
+    }
+    else if(op=="*"){
+        return firstNum*secondNum;
+    }
+    else if(op=="/"){
+        return firstNum/secondNum;
+    }
 }
 
-function subtract(a,b){
-    return a-b;
-}
-
-function multiply(a,b){
-    return a*b;
-}
-
-function divide(a,b){
-    return a/b
-}
-
-console.log(add(4,2))
-console.log(subtract(4,2))
-console.log(multiply(4,2))
-console.log(divide(4,2))
+console.log(operate(2,"+",4))
+console.log(operate(2,"*",4))
