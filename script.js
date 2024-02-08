@@ -1,7 +1,7 @@
-let firstNum
-let op
-let secondNum
-let displayValue=0
+let firstNum=''
+let op=null
+let secondNum=''
+let displayValue='0'
 
 const display = document.querySelector(".display")
 display.textContent=displayValue
@@ -14,10 +14,21 @@ buttons.forEach(button => {
 function changeDisplay(button){
     button.addEventListener('click', () => {
         if(button.textContent==="C"){
-            displayValue=0
+            displayValue='0'
+        }
+        else if(button.textContent==="Del"){
+            displayValue = displayValue.slice(0, -1);
+            if (displayValue === '') {
+                displayValue = '0';
+            }
         }
         else{
-            displayValue = button.textContent;
+            if(displayValue=='0'){
+                displayValue=button.textContent;
+            }
+            else{
+                displayValue += button.textContent;
+            }
         }
         display.textContent = displayValue;
     });
@@ -38,6 +49,3 @@ function operate(firstNum, op, secondNum){
         return firstNum/secondNum;
     }
 }
-
-console.log(operate(2,"+",4))
-console.log(operate(2,"*",4))
