@@ -8,6 +8,10 @@ display.textContent=displayValue
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
+    changeDisplay(button)
+});
+
+function changeDisplay(button){
     button.addEventListener('click', () => {
         if(button.textContent==="C"){
             displayValue=0
@@ -17,7 +21,7 @@ buttons.forEach(button => {
         }
         display.textContent = displayValue;
     });
-});
+}
 
 
 function operate(firstNum, op, secondNum){
