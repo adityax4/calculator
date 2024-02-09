@@ -1,5 +1,5 @@
 *{
-    font-family: 'Geologica', sans-serif;
+    font-family: 'Geologica', Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     margin: 0;
 }
@@ -19,7 +19,7 @@ h1{
 
 p{
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .calculator{
@@ -35,7 +35,7 @@ p{
 .display{
     height: 100px;
     background-color: #adf7d1;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-bottom: 30px;
     display: flex;
     justify-content: end;
@@ -96,7 +96,7 @@ button:hover{
 }
 
 .equals{
-    background-color: #feed30;
+    background-color: #ffe83a;
     flex: 45%;
 }
 

@@ -20,6 +20,7 @@ numButtons.forEach(button => {
     })
 });
 
+// display numbers on screen
 function displayNum(number){
     addColumn();
     removeZeroDisplay();
@@ -40,6 +41,7 @@ function addColumn(){
     display.classList.add('column');
 }
 
+// clear divide zero message
 function removeZeroDisplay(){
     if(zeroDisplay.textContent.length!=0){
         zeroDisplay.textContent='';
@@ -51,6 +53,7 @@ opButtons.forEach((button)=>{
         applyOp(button.textContent);
     })
 })
+
 
 function applyOp(op){
     removeZeroDisplay();
@@ -98,10 +101,10 @@ function operate(firstNum, op, secondNum){
     else if(op=="-"){
         return firstNum-secondNum;
     }
-    else if(op=="x"){
+    else if(op=="×"){
         return firstNum*secondNum;
     }
-    else if(op=="/"){
+    else if(op=="÷"){
         if(secondNum===0) return "IMPOSSIBLE";
         return firstNum/secondNum;
     }
@@ -195,7 +198,8 @@ document.body.addEventListener('keydown', (e)=>{
         displayNum(key);
     }
     else if(key==="/" || key==="*" || key==="-" || key==="+"){
-        if(key==="*") applyOp("x");
+        if(key==="*") applyOp("×");
+        if(key==="/") applyOp("÷")
         else applyOp(key);
     }
     else if(key==="."){
