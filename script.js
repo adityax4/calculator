@@ -1,5 +1,5 @@
 let input = null
-let op = null
+let operator = null
 let result = null
 let enter = false
 
@@ -52,30 +52,30 @@ function applyOp(op){
         zeroDisplay.innerText='';
     }
     if(input===null && result!=null){
-        op = op;
-        displayHistory.innerText=result+" "+op;
+        operator = op;
+        displayHistory.innerText=result+" "+operator;
     }
     else if(input!=null && (displayHistory.innerText.includes('+')==true || displayHistory.innerText.includes('-')==true || displayHistory.innerText.includes('/')==true || displayHistory.innerText.includes('*')==true)){
         if(result===null){
-            op=op;
+            operator=op;
             result=input;
             input=null;
-            displayHistory.innerText=result+" "+op;
+            displayHistory.innerText=result+" "+operator;
         }
         else{
-            displayHistory.innerText=result+" "+op+" "+input;
-            result= (operate(parseFloat(result), op, parseFloat(input))).toString();
+            displayHistory.innerText=result+" "+operator+" "+input;
+            result= (operate(parseFloat(result), operator, parseFloat(input))).toString();
             if(result==="IMPOSSIBLE") displayZeroError();
             displayResult.innerText=result;
             input=null;
-            op=op; 
+            operator=op; 
         }
     }
     else if(input!=null){
-        op=op;
+        operator=op;
         result=input;
         input=null;
-        displayHistory.innerText = result+" "+op;
+        displayHistory.innerText = result+" "+operator;
     }
 }
 
@@ -113,8 +113,8 @@ function applyEqual(){
         zeroDisplay.innerText="";
     }
     else if(input!=null && result!=null){
-        displayHistory.innerText=result+" "+op+" "+input;
-        result = (operate(parseFloat(result), op, parseFloat(input))).toString();
+        displayHistory.innerText=result+" "+operator+" "+input;
+        result = (operate(parseFloat(result), operator, parseFloat(input))).toString();
         if(result==="IMPOSSIBLE") displayZeroError();
         input=null;
         displayResult.innerText=result;
