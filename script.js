@@ -41,52 +41,50 @@ function addColumn(){
     display.classList.add('column');
 }
 
+opButtons.forEach((button)=>{
+    button.addEventListener('click', ()=>{
+        applyOp(button.innerText);
+    })
+})
 
-function changeDisplay(button){
-    button.addEventListener('click', () => {
-        if(button.textContent==="C"){
-            displayValue='0'
-        }
-        else if(button.textContent==="Del"){
-            displayValue = displayValue.slice(0, -1);
-            if (displayValue === '') {
-                displayValue = '0';
-            }
-        }
-        else if (button.textContent === "+" || button.textContent === "-" || button.textContent === "*" || button.textContent === "/") {
-            if (firstNum !== '' && op !== null && secondNum === '') {
-                op = button.textContent;
-                displayValue = op;
-            } else if (firstNum === '') {
-                firstNum = parseFloat(displayValue);
-                op = button.textContent;
-                displayValue = op;
-            }
-        } 
-        else if (button.textContent === "=") {
-            if (firstNum !== '' && op !== null && secondNum === '') {
-                secondNum = parseFloat(displayValue);
-                let result = operate(firstNum, op, secondNum);
-                if (isNaN(result) || !isFinite(result)) {
-                    displayValue = 'Error';
-                } else {
-                    displayValue = result;
-                }
-                firstNum = '';
-                op = null;
-                secondNum = '';
-            }
+function applyOp(op){
+    if(zeroDisplay.innerText.length!=0){
+        zeroDisplay.innerText='';
+    }
+    if(input===null && result!=null){
+        op = op;
+        displayHistory.innerText=result+" "+op;
+    }
+    else if(input!=null && (displayHistory.innerText.includes('+')==true || displayHistory.innerText.includes('-')==true || displayHistory.innerText.includes('/')==true || displayHistory.innerText.includes('*')==true)){
+        if(result===null){
+            op=op;
+            result=input;
+            input=null;
+            displayHistory.innerText=result+" "+op;
         }
         else{
-            if(displayValue=='0'){
-                displayValue=button.textContent;
-            }
-            else{
-                displayValue += button.textContent;
-            }
+            displayHistory.innerText=result+" "+op+" "+input;
+            result= (operate(parseFloat(result), op, parseFloat(input))).toString();
+            if(result==="IMPOSSIBLE") displayZeroError();
+            displayResult.innerText=result;
+            input=null;
+            op=op; 
         }
-        display.textContent = displayValue;
-    });
+    }
+    else if(input!=null){
+        op=op;
+        result=input;
+        input=null;
+        displayHistory.innerText = result+" "+op;
+    }
+}
+
+function displayZeroError(){
+    input=null;
+    result=null;
+    displayHistory.innerText="";
+    displayResult.innerText="";
+    zeroDisplay.innerText = "can't divide by 0";
 }
 
 
@@ -101,30 +99,8 @@ function operate(firstNum, op, secondNum){
         return firstNum*secondNum;
     }
     else if(op=="/"){
+        if(secondNum===0) return "IMPOSSIBLE";
         return firstNum/secondNum;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
