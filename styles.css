@@ -1,40 +1,83 @@
-body{
-    display: flex;
-    justify-content: center;
-    margin-top: 200px;
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
 }
 
 .calculator{
-    padding: 20px 20px;
-    border: 1px solid;
-    height: 500px;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
+    background-color: lightcoral;
+    padding: 20px;
+    width: 220px;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 20px;
 }
 
 .display{
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    margin-bottom: 30px;
     display: flex;
-    justify-content: flex-end;
-    flex: 1;
+    justify-content: end;
+    padding: 5px 20px;
+    font-size: 40px;
+    border-left: 10px rgb(235, 235, 235) solid;
+    font-weight: bold;
+    overflow: hidden;
 }
+
+.display-history{
+    color: darkgray;
+    font-size: 20px;
+    overflow: hidden;
+}
+
+.display-result{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.column{
+    flex-direction: column;
+    align-items: end;
+}
+
+.zero-division-message{
+    font-size: 28px;
+}
+
+
 
 .buttons{
     display: flex;
     gap: 10px;
-    flex-grow: 0;
     flex-wrap: wrap;
 }
 
 button{
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 28px;
+    background-color: lightgreen;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-size: 30px;
+    font-weight: bold;
+    flex: 20%;
+    color: rgb(49, 49, 49);
 }
 
-.equals{
-    padding: 0 60px;
-    flex: 1;
+button:active{
+    transform: translateY(2px);
+}
+
+.zero{
+    flex: 45%;
+}
+
+.divide, .multiply, .subtract, .add, .equals{
+    background-color: chocolate;
+}
+
+.clear, .delete{
+    background-color: cornflowerblue;
 }
