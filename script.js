@@ -95,19 +95,22 @@ function displayZeroError(){
 
 
 function operate(firstNum, op, secondNum){
+    let calculation;
     if(op=="+"){
-        return firstNum+secondNum;
+        calculation = firstNum+secondNum;
     }
     else if(op=="-"){
-        return firstNum-secondNum;
+        calculation = firstNum-secondNum;
     }
     else if(op=="×"){
-        return firstNum*secondNum;
+        calculation = firstNum*secondNum;
     }
     else if(op=="÷"){
         if(secondNum===0) return "IMPOSSIBLE";
-        return firstNum/secondNum;
+        calculation = firstNum/secondNum;
     }
+    calculation = Math.round(calculation*100)/100;
+    return calculation;
 }
 
 eqButton.addEventListener('click', ()=>{
