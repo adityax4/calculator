@@ -15,11 +15,32 @@ const decimalButton = document.querySelector(".decimal")
 
 
 
-
-const buttons = document.querySelectorAll("button");
-buttons.forEach(button => {
-    changeDisplay(button)
+numButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        displayNum(button.innerText);
+    })
 });
+
+function displayNum(number){
+    addColumn();
+    if(zeroDisplay.innerText.length!=0) zeroDisplay.innerText='';
+
+    if(enter===true){
+        input=number;
+        result=null;
+        enter=false;
+    }
+    else if(input===null){
+        input=number;
+    }
+    else input+=number;
+    displayResult.innerText=input;
+}
+
+function addColumn(){
+    display.classList.add('column');
+}
+
 
 function changeDisplay(button){
     button.addEventListener('click', () => {
