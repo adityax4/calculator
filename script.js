@@ -16,7 +16,7 @@ const decimalButton = document.querySelector(".decimal")
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
-        displayNum(button.innerText);
+        displayNum(button.textContent);
     })
 });
 
@@ -33,7 +33,7 @@ function displayNum(number){
         input=number;
     }
     else input+=number;
-    displayResult.innerText=input;
+    displayResult.textContent=input;
 }
 
 function addColumn(){
@@ -41,14 +41,14 @@ function addColumn(){
 }
 
 function removeZeroDisplay(){
-    if(zeroDisplay.innerText.length!=0){
-        zeroDisplay.innerText='';
+    if(zeroDisplay.textContent.length!=0){
+        zeroDisplay.textContent='';
     }
 }
 
 opButtons.forEach((button)=>{
     button.addEventListener('click', ()=>{
-        applyOp(button.innerText);
+        applyOp(button.textContent);
     })
 })
 
@@ -56,20 +56,20 @@ function applyOp(op){
     removeZeroDisplay();
     if(input===null && result!=null){
         operator = op;
-        displayHistory.innerText=result+" "+operator;
+        displayHistory.textContent=result+" "+operator;
     }
-    else if(input!=null && (displayHistory.innerText.includes('+')==true || displayHistory.innerText.includes('-')==true || displayHistory.innerText.includes('/')==true || displayHistory.innerText.includes('*')==true)){
+    else if(input!=null && (displayHistory.textContent.includes('+')==true || displayHistory.textContent.includes('-')==true || displayHistory.textContent.includes('/')==true || displayHistory.textContent.includes('*')==true)){
         if(result===null){
             operator=op;
             result=input;
             input=null;
-            displayHistory.innerText=result+" "+operator;
+            displayHistory.textContent=result+" "+operator;
         }
         else{
-            displayHistory.innerText=result+" "+operator+" "+input;
+            displayHistory.textContent=result+" "+operator+" "+input;
             result= (operate(parseFloat(result), operator, parseFloat(input))).toString();
             if(result==="IMPOSSIBLE") displayZeroError();
-            displayResult.innerText=result;
+            displayResult.textContent=result;
             input=null;
             operator=op; 
         }
@@ -78,16 +78,16 @@ function applyOp(op){
         operator=op;
         result=input;
         input=null;
-        displayHistory.innerText = result+" "+operator;
+        displayHistory.textContent = result+" "+operator;
     }
 }
 
 function displayZeroError(){
     input=null;
     result=null;
-    displayHistory.innerText="";
-    displayResult.innerText="";
-    zeroDisplay.innerText = "can't divide by 0";
+    displayHistory.textContent="";
+    displayResult.textContent="";
+    zeroDisplay.textContent = "can't divide by 0";
 }
 
 
@@ -114,11 +114,11 @@ eqButton.addEventListener('click', ()=>{
 function applyEqual(){
     removeZeroDisplay();
     if(input!=null && result!=null){
-        displayHistory.innerText=result+" "+operator+" "+input;
+        displayHistory.textContent=result+" "+operator+" "+input;
         result = (operate(parseFloat(result), operator, parseFloat(input))).toString();
         if(result==="IMPOSSIBLE") displayZeroError();
         input=null;
-        displayResult.innerText=result;
+        displayResult.textContent=result;
     }
 }
 
@@ -129,9 +129,9 @@ clrButton.addEventListener('click', ()=>{
 function applyClear(){
     input=null
     result=null
-    displayHistory.innerText="";
-    displayResult.innerText="";
-    zeroDisplay.innerText="";
+    displayHistory.textContent="";
+    displayResult.textContent="";
+    zeroDisplay.textContent="";
 }
 
 delButton.addEventListener('click', ()=>{
@@ -142,13 +142,13 @@ function applyDelete(){
     if(result!=null && input === null){
         result=parseFloat(result.toString().slice(0,-1));
         if(isNaN(result)) result=0;
-        displayResult.innerText=result;
+        displayResult.textContent=result;
         input=result;
         historyDisplayFix();
     }
     else if(input){
         input=input.toString().slice(0,-1);
-        displayResult.innerText=input;
+        displayResult.textContent=input;
         if(input.length===0) input=null;
         historyDisplayFix();
     }
@@ -157,7 +157,7 @@ function applyDelete(){
 const display = document.querySelector(".display");
 
 function historyDisplayFix(){
-    if(displayResult.innerText.length==0 && displayHistory.innerText.length!=0){
+    if(displayResult.textContent.length==0 && displayHistory.textContent.length!=0){
         display.classList.remove('column');
     }
     else display.classList.add('column')
@@ -172,18 +172,18 @@ function applyDecimal(){
     if(enter==true){
         input="0.";
         result=null;
-        displayHistory.innerText="";
-        displayResult.innerText=input;
+        displayHistory.textContent="";
+        displayResult.textContent=input;
         enter=false;
     }
     else if(input===null){
         input="0.";
-        displayResult.innerText=input;
+        displayResult.textContent=input;
         enter=false;
     }
     else if(input.indexOf('.')==-1){
         input+='.';
-        displayResult.innerText=input;
+        displayResult.textContent=input;
     }
 }
 
@@ -192,7 +192,7 @@ function applyDecimal(){
 document.body.addEventListener('keydown', (e)=>{
     const key=e.key;
     if(key>=0 && key<=9){
-        displayNum(key)
+        displayNum(key);
     }
     else if(key==="/" || key==="*" || key==="-" || key==="+"){
         if(key==="*") applyOp("x");
