@@ -14,7 +14,6 @@ const delButton = document.querySelector(".delete")
 const decimalButton = document.querySelector(".decimal")
 
 
-
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         displayNum(button.innerText);
@@ -23,7 +22,7 @@ numButtons.forEach(button => {
 
 function displayNum(number){
     addColumn();
-    if(zeroDisplay.innerText.length!=0) zeroDisplay.innerText='';
+    removeZeroDisplay();
 
     if(enter===true){
         input=number;
@@ -41,6 +40,12 @@ function addColumn(){
     display.classList.add('column');
 }
 
+function removeZeroDisplay(){
+    if(zeroDisplay.innerText.length!=0){
+        zeroDisplay.innerText='';
+    }
+}
+
 opButtons.forEach((button)=>{
     button.addEventListener('click', ()=>{
         applyOp(button.innerText);
@@ -48,9 +53,7 @@ opButtons.forEach((button)=>{
 })
 
 function applyOp(op){
-    if(zeroDisplay.innerText.length!=0){
-        zeroDisplay.innerText='';
-    }
+    removeZeroDisplay();
     if(input===null && result!=null){
         operator = op;
         displayHistory.innerText=result+" "+operator;
@@ -109,10 +112,8 @@ eqButton.addEventListener('click', ()=>{
 })
 
 function applyEqual(){
-    if(zeroDisplay.innerText.length!=0){
-        zeroDisplay.innerText="";
-    }
-    else if(input!=null && result!=null){
+    removeZeroDisplay();
+    if(input!=null && result!=null){
         displayHistory.innerText=result+" "+operator+" "+input;
         result = (operate(parseFloat(result), operator, parseFloat(input))).toString();
         if(result==="IMPOSSIBLE") displayZeroError();
@@ -127,7 +128,6 @@ clrButton.addEventListener('click', ()=>{
 
 function applyClear(){
     input=null
-    history=null
     result=null
     displayHistory.innerText="";
     displayResult.innerText="";
@@ -168,9 +168,7 @@ decimalButton.addEventListener('click', ()=>{
 })
 
 function applyDecimal(){
-    if(zeroDisplay.innerText.length!=0){
-        zeroDisplay.innerText="";
-    }
+    removeZeroDisplay();
     if(enter==true){
         input="0.";
         result=null;
@@ -192,26 +190,26 @@ function applyDecimal(){
 // Keyboard functionality
 
 document.body.addEventListener('keydown', (e)=>{
-    key=e.key;
+    const key=e.key;
     if(key>=0 && key<=9){
         displayNum(key)
     }
-    else if(key=="/" || key=="*" || key=="-" || key=="+"){
-        if(key=="*") applyOp("x");
+    else if(key==="/" || key==="*" || key==="-" || key==="+"){
+        if(key==="*") applyOp("x");
         else applyOp(key);
     }
-    else if(key=="."){
+    else if(key==="."){
         applyDecimal();
     }
-    else if(key=="Enter"){
+    else if(key==="Enter"){
         e.preventDefault();
         applyEqual();
         enter=true;
     }
-    else if(key=="Delete" || key =="Backspace"){
+    else if(key==="Delete" || key ==="Backspace"){
         applyDelete();
     }
-    else if(key=="Escape"){
+    else if(key==="Escape"){
         applyClear();
     }
 })

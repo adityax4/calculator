@@ -9,11 +9,17 @@ body{
 }
 
 h1{
-    background-color: #ffec42;
+    background-color: #2eb872;
+    color: white;
     font-size: 50px;
     margin-top: 50px;
     text-align: center;
     font-family: 'Belanosima', sans-serif;
+}
+
+p{
+    text-align: center;
+    margin-top: 20px;
 }
 
 .calculator{
@@ -23,11 +29,12 @@ h1{
     margin: auto;
     margin-top: 50px;
     border-radius: 20px;
+    box-shadow: 20px 14px 32px rgba(200, 0, 255, 0.5);
 }
 
 .display{
     height: 100px;
-    background-color: rgb(255, 255, 255);
+    background-color: #adf7d1;
     border-radius: 20px;
     margin-bottom: 30px;
     display: flex;
@@ -83,11 +90,17 @@ button:active{
     transform: translateY(2px);
 }
 
+button:hover{
+    cursor: pointer;
+    background-color: white;
+}
+
 .equals{
+    background-color: #feed30;
     flex: 45%;
 }
 
-.divide, .multiply, .subtract, .add, .equals, .decimal{
+.divide, .multiply, .subtract, .add, .decimal{
     background-color: #fd72ad;
     color: rgb(65, 57, 57);
 }
