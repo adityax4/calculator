@@ -134,3 +134,31 @@ function applyClear(){
     zeroDisplay.innerText="";
 }
 
+delButton.addEventListener('click', ()=>{
+    applyDelete();
+})
+
+function applyDelete(){
+    if(result!=null && input === null){
+        result=parseFloat(result.toString().slice(0,-1));
+        if(isNaN(result)) result=0;
+        displayResult.innerText=result;
+        input=result;
+        historyDisplayFix();
+    }
+    else if(input){
+        input=input.toString().slice(0,-1);
+        displayResult.innerText=input;
+        if(input.length===0) input=null;
+        historyDisplayFix();
+    }
+}
+
+const display = document.querySelector(".display");
+
+function historyDisplayFix(){
+    if(displayResult.innerText.length==0 && displayHistory.innerText.length!=0){
+        display.classList.remove('column');
+    }
+    else display.classList.add('column')
+}
