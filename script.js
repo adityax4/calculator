@@ -104,3 +104,20 @@ function operate(firstNum, op, secondNum){
     }
 }
 
+eqButton.addEventListener('click', ()=>{
+    applyEqual();
+})
+
+function applyEqual(){
+    if(zeroDisplay.innerText.length!=0){
+        zeroDisplay.innerText="";
+    }
+    else if(input!=null && result!=null){
+        displayHistory.innerText=result+" "+op+" "+input;
+        result = (operate(parseFloat(result), op, parseFloat(input))).toString();
+        if(result==="IMPOSSIBLE") displayZeroError();
+        input=null;
+        displayResult.innerText=result;
+    }
+}
+
