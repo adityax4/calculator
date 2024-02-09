@@ -57,6 +57,28 @@ opButtons.forEach((button)=>{
 
 function applyOp(op){
     removeZeroDisplay();
+    if(input === null && result === null) {
+        // If both input and result are null, return
+        return;
+    }
+    if(input !== null && result !== null && operator !== null){
+        // If there's an ongoing calculation, apply the operation immediately
+        result = operate(parseFloat(result), operator, parseFloat(input));
+        if(result === "IMPOSSIBLE") {
+            displayZeroError();
+            return;
+        }
+        input = null; // Reset input
+    }
+    operator = op;
+    if (input !== null && result === null) {
+        // If input is not null and result is null, assign input to result
+        result = input;
+        input = null; // Reset input
+    }
+    if (result !== null) {
+        displayHistory.textContent = result + " " + operator;
+    }
     if(input===null && result!=null){
         operator = op;
         displayHistory.textContent=result+" "+operator;
