@@ -162,3 +162,29 @@ function historyDisplayFix(){
     }
     else display.classList.add('column')
 }
+
+decimalButton.addEventListener('click', ()=>{
+    applyDecimal();
+})
+
+function applyDecimal(){
+    if(zeroDisplay.innerText.length!=0){
+        zeroDisplay.innerText="";
+    }
+    if(enter==true){
+        input="0.";
+        result=null;
+        displayHistory.innerText="";
+        displayResult.innerText=input;
+        enter=false;
+    }
+    else if(input===null){
+        input="0.";
+        displayResult.innerText=input;
+        enter=false;
+    }
+    else if(input.indexOf('.')==-1){
+        input+='.';
+        displayResult.innerText=input;
+    }
+}
