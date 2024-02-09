@@ -22,6 +22,30 @@ function changeDisplay(button){
                 displayValue = '0';
             }
         }
+        else if (button.textContent === "+" || button.textContent === "-" || button.textContent === "*" || button.textContent === "/") {
+            if (firstNum !== '' && op !== null && secondNum === '') {
+                op = button.textContent;
+                displayValue = op;
+            } else if (firstNum === '') {
+                firstNum = parseFloat(displayValue);
+                op = button.textContent;
+                displayValue = op;
+            }
+        } 
+        else if (button.textContent === "=") {
+            if (firstNum !== '' && op !== null && secondNum === '') {
+                secondNum = parseFloat(displayValue);
+                let result = operate(firstNum, op, secondNum);
+                if (isNaN(result) || !isFinite(result)) {
+                    displayValue = 'Error';
+                } else {
+                    displayValue = result;
+                }
+                firstNum = '';
+                op = null;
+                secondNum = '';
+            }
+        }
         else{
             if(displayValue=='0'){
                 displayValue=button.textContent;
@@ -49,3 +73,27 @@ function operate(firstNum, op, secondNum){
         return firstNum/secondNum;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
