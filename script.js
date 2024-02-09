@@ -1,10 +1,20 @@
-let firstNum=''
-let op=null
-let secondNum=''
-let displayValue='0'
+let input = null
+let op = null
+let result = null
+let enter = false
 
-const display = document.querySelector(".display")
-display.textContent=displayValue
+const displayResult = document.querySelector(".display-result")
+const displayHistory = document.querySelector(".display-history")
+const zeroDisplay = document.querySelector(".zero-division-message")
+const numButtons = document.querySelectorAll(".number")
+const opButtons = document.querySelectorAll(".operator")
+const eqButton = document.querySelector(".equals")
+const clrButton = document.querySelector(".clear")
+const delButton = document.querySelector(".delete")
+const decimalButton = document.querySelector(".decimal")
+
+
+
 
 const buttons = document.querySelectorAll("button");
 buttons.forEach(button => {
