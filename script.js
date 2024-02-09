@@ -121,3 +121,16 @@ function applyEqual(){
     }
 }
 
+clrButton.addEventListener('click', ()=>{
+    applyClear();
+})
+
+function applyClear(){
+    input=null
+    history=null
+    result=null
+    displayHistory.innerText="";
+    displayResult.innerText="";
+    zeroDisplay.innerText="";
+}
+
