@@ -95,7 +95,7 @@ function operate(firstNum, op, secondNum){
     else if(op=="-"){
         return firstNum-secondNum;
     }
-    else if(op=="*"){
+    else if(op=="x"){
         return firstNum*secondNum;
     }
     else if(op=="/"){
@@ -188,3 +188,30 @@ function applyDecimal(){
         displayResult.innerText=input;
     }
 }
+
+// Keyboard functionality
+
+document.body.addEventListener('keydown', (e)=>{
+    key=e.key;
+    if(key>=0 && key<=9){
+        displayNum(key)
+    }
+    else if(key=="/" || key=="*" || key=="-" || key=="+"){
+        if(key=="*") applyOp("x");
+        else applyOp(key);
+    }
+    else if(key=="."){
+        applyDecimal();
+    }
+    else if(key=="Enter"){
+        e.preventDefault();
+        applyEqual();
+        enter=true;
+    }
+    else if(key=="Delete" || key =="Backspace"){
+        applyDelete();
+    }
+    else if(key=="Escape"){
+        applyClear();
+    }
+})
